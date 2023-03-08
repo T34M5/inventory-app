@@ -1,9 +1,9 @@
 const express = require("express");
-const item = express.Router();
+const itemRouter = express.Router();
 const { Item } = require("../models");
 
 // GET all items
-item.get("/all", async (req, res) => {
+itemRouter.get("/all", async (req, res) => {
   try {
     const allItems = await Item.findAll();
     res.send(allItems);
@@ -13,7 +13,7 @@ item.get("/all", async (req, res) => {
 });
 
 //GET individual item
-item.get("/:name", async (req, res) => {
+itemRouter.get("/:name", async (req, res) => {
   try {
     const oneItem = await Item.findAll({
       where: {
@@ -27,24 +27,41 @@ item.get("/:name", async (req, res) => {
 })
 
 //POST to add a new item
-item.post('/new', async (req, res) => {
-  const newItem = await Item.create(req.body);
-  res.send(newItem);
+itemRouter.post('/new', async (req, res) => {
+  try {
+    const newItem = await Item.create(req.body);
+    res.send(newItem);
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 //DELETE an item
-item.delete('/:name', async (req, res) => {
-  await Item.delete({
-    where: {
-      name: req.params.name
-    }
-  });
-  res.send("");
+itemRouter.delete('/:name', async (req, res) => {
+  try {
+    await Item.delete({
+      where: {
+        name: req.params.name
+      }
+    });
+    res.send("");
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 //PUT to update item
-item.put('/:name', async (req, res) => {
-  
+itemRouter.put('/:name', async (req, res) => {
+  try {
+    await Item.update(req.body, {
+      where: {
+        name: req.params.name
+      }
+    });
+    res.send("");
+  } catch (error) {
+    console.log(error);
+  }
 })
 
-module.exports = item;
+module.exports = itemRouter;

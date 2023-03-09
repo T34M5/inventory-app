@@ -29,8 +29,8 @@ itemRouter.get("/:name", async (req, res) => {
 //POST to add a new item
 itemRouter.post('/new', async (req, res) => {
   try {
-    const newItem = await Item.create(req.body);
-    res.send(newItem);
+    await Item.create(req.body);
+    res.send(req.body);
   } catch (error) {
     console.log(error);
   }

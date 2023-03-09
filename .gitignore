@@ -1,3 +1,4 @@
+
 node_modules/
 .DS_Store
 .vscode
@@ -7,4 +8,4 @@ dist
 .cache
 
 #sqlite
-*.sqlite
+#*.sqlite

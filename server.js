@@ -9,7 +9,7 @@ const init = async () => {
     await db.sync();
 
     //express routes and requests
-    app.use(express.json());
+
     app.use('/item', itemRouter);
 
     app.listen(PORT, () => {

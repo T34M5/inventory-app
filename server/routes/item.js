@@ -17,7 +17,7 @@ itemRouter.get("/:name", async (req, res) => {
   try {
     const oneItem = await Item.findAll({
       where: {
-        name: req.params.name
+        title: req.params.name
       }
     });
     res.send(oneItem);
@@ -63,5 +63,4 @@ itemRouter.put('/:name', async (req, res) => {
     console.log(error);
   }
 })
-
-module.exports = itemRouter;
+module.exports = { itemRouter };

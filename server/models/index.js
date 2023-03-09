@@ -7,3 +7,5 @@ module.exports = {
   db: sequelize,
   Item
 };
+
+
